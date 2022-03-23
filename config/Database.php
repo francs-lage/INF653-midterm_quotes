@@ -1,31 +1,33 @@
 <?php
-class Database{
+
+class Database {
 
     private $connection;
     private $url;
+    private $hostname;
+    private $username;
+    private $password;
+    private $database;
+
+    function __construct() {
+        $this->url = getenv('JAWSDB_URL');
+        $dbparts   = parse_url($url);
+        $this->hostname = $dbparts['host'];
+        $this->username = $dbparts['user'];
+        $this->password = $dbparts['pass'];
+        $this->database = ltrim($dbparts['path'], '/');
+    }
 
     public function connect(){
         $this->connection = null;
-        $url = getenv('JAWSDB_URL');
-        $dbparts = parse_url($url);
-        $hostname = $dbparts['host'];
-        $username = $dbparts['user'];
-        $password = $dbparts['pass'];
-        $database = ltrim($dbparts['path'],'/');
-
-        try {
-            $connection = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
-            // set the PDO error mode to exception
-            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            //echo "Connected successfully";
-            }
-        catch(PDOException $e)
-            {
-            echo "Connection failed: " . $e->getMessage();
-            }
+        try{
+            $this->connection = new PDO('mysql:host='. $this->hostname . ';dbname='. $this->database, $this->username, $this->password);
+            // set the PDO mode to exception
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // echo "Connected successfully
+        }catch(PDOException $e){
+            echo 'Connection Error: ' . $e->getMessage();
+        }
         return $this->connection;
     }
-
-
-
-}//end Class Database
+}
