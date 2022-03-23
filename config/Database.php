@@ -11,7 +11,7 @@ class Database {
 
     function __construct() {
         $this->url = getenv('JAWSDB_URL');
-        $dbparts   = parse_url($url);
+        $dbparts   = parse_url($this->$url);
         $this->hostname = $dbparts['host'];
         $this->username = $dbparts['user'];
         $this->password = $dbparts['pass'];
