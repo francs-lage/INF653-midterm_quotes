@@ -2,23 +2,29 @@
 // The main part of this code comes from the PDO-intro Week 6 assignment
 class Database{
     private $connection;
-    private $host;
-    private $database;
-    private $username;
-    private $password;
+    private $url;
+    //private $host;
+    //private $database;
+    //private $username;
+    //private $password;
     
     function __construct(){
         $this->connection = null;
-        $url     = getenv('JAWSDB_URL');
-        $dbparts = parse_url($url);
-        $this->$host     = $dbparts['host'];
-        $this->$database  = ltrim($dbparts['path'], '/');
-        $this->$username = $dbparts['user'];
-        $this->$password = $dbparts['pass'];
+        $this->$url       = getenv('JAWSDB_URL');
+        //$dbparts = parse_url($url);
+        //$this->$host     = $dbparts['host'];
+        //$this->$database  = ltrim($dbparts['path'], '/');
+        //$this->$username = $dbparts['user'];
+        //$this->$password = $dbparts['pass'];
     }
     public function connect(){
+        $dbparts = parse_url($url);
+        $host     = $dbparts['host'];
+        $dbname  = ltrim($dbparts['path'], '/');
+        $username = $dbparts['user'];
+        $password = $dbparts['pass'];
         try {
-            $this->connection = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->database, $this->username, $this->password);
+            $this->connection = new PDO('mysql:host=' . $host . ';dbname=' . $dbname, $username, $password);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             $error_message = 'Database Error: ';
