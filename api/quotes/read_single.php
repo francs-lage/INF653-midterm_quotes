@@ -32,6 +32,6 @@ if (isset($quote_obj->id)){
     print_r(json_encode($quote_arr));
 }else{
     // No Quotes
-    echo json_encode(array('message' => 'QuoteId not Found'));
+    echo json_encode(array('message' => 'No Quotes Found'));
 }
 /* ( ends 9'40", next: test on postman and create on Quote.php )*/
