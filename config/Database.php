@@ -20,7 +20,7 @@ class Database{
     public function connect(){
         // $this->conn = null;
         // $this->$url       = getenv('JAWSDB_URL');
-        $dbparts = parse_url($this->url);
+        $dbparts  = parse_url($this->url);
         $host     = $dbparts['host'];
         $dbname   = ltrim($dbparts['path'], '/');
         $username = $dbparts['user'];
