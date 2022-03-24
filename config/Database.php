@@ -3,7 +3,7 @@
 class Database{
     private $connection;
     private $host;
-    private $db_name;
+    private $database;
     private $username;
     private $password;
     
@@ -11,14 +11,14 @@ class Database{
         $url     = getenv('JAWSDB_URL');
         $dbparts = parse_url($url);
         $this->$host     = $dbparts['host'];
-        $this->$db_name  = ltrim($dbparts['path'], '/');
+        $this->$database  = ltrim($dbparts['path'], '/');
         $this->$username = $dbparts['user'];
         $this->$password = $dbparts['pass'];
     }
     public function connect(){
         try {
-            $this->connection = new PDO("mysql:host={$this->$host};dbname={$this->$db_name}", $this->$username, $this->$password);
-            $this->connection = setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->connection = new PDO('mysql:host=' . $host . ';dbname=' . $this->database, $this->username, $this->password);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             $error_message = 'Database Error: ';
             $error_message .= $e->getMessage();
