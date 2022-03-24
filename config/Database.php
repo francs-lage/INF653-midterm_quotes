@@ -9,8 +9,8 @@ class Database{
     // private $password;
     
     function __construct(){
-        // $this->conn = null;
-        // $this->$url       = getenv('JAWSDB_URL');
+        $this->conn = null;
+        $this->$url       = getenv('JAWSDB_URL');
         // $dbparts = parse_url($this->url);
         // $this->$host     = $dbparts['host'];
         // $this->$database  = ltrim($dbparts['path'], '/');
@@ -18,8 +18,8 @@ class Database{
         // $this->$password = $dbparts['pass'];
     }
     public function connect(){
-        $this->conn = null;
-        $this->$url       = getenv('JAWSDB_URL');
+        // $this->conn = null;
+        // $this->$url       = getenv('JAWSDB_URL');
         $dbparts = parse_url($this->url);
         $host     = $dbparts['host'];
         $dbname   = ltrim($dbparts['path'], '/');
