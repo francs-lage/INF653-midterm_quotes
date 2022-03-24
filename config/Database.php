@@ -1,7 +1,7 @@
 <?php 
 // The main part of this code comes from the PDO-intro Week 6 assignment
 class Database{
-    private $conn;
+    private $connection;
     private $url;
     // private $host;
     // private $database;
@@ -9,7 +9,7 @@ class Database{
     // private $password;
     
     function __construct(){
-        $this->conn = null;
+        $this->connection = null;
         $this->url = getenv('JAWSDB_URL');
         // $dbparts = parse_url($this->url);
         // $this->$host     = $dbparts['host'];
@@ -26,13 +26,13 @@ class Database{
         $username = $dbparts['user'];
         $password = $dbparts['pass'];
         try {
-            $this->conn = new PDO('mysql:host=' . $host . ';dbname=' . $dbname, $username, $password);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->connection = new PDO('mysql:host=' . $host . ';dbname=' . $dbname, $username, $password);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             $error_message .= $e->getMessage();
             echo $error_message;
             exit(' -- Unable to connect to the database.');
         }
-        return $this->conn;
+        return $this->connection;
     }
 }
