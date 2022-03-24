@@ -29,5 +29,5 @@ if (isset($author_obj->id)){
     // Print result in JSON format
     print_r(json_encode($author_arr));
 }else{     
-    echo json_encode( array('message' => 'AuthorId Not Found'));
+    echo json_encode( array('message' => 'authorId Not Found'));
 }
