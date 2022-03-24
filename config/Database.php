@@ -26,7 +26,7 @@ class Database{
         $username  = $dbparts['user'];
         $password  = $dbparts['pass'];
         try {
-            $this->connection = new PDO('mysql:host=' . $host . ';dbname=' . $dbname, $username, $password);
+            $this->connection = new PDO('mysql:host=' . $host . ';dbname=' . $database, $username, $password);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             $error_message .= $e->getMessage();
