@@ -8,6 +8,7 @@ class Database{
     private $password;
     
     function __construct(){
+        $this->connection = null;
         $url     = getenv('JAWSDB_URL');
         $dbparts = parse_url($url);
         $this->$host     = $dbparts['host'];
@@ -25,5 +26,6 @@ class Database{
             echo $error_message;
             exit('Unable to connect to the database');
         }
+        return $this->connection;
     }
 }
