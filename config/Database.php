@@ -18,7 +18,7 @@ class Database{
         //$this->$password = $dbparts['pass'];
     }
     public function connect(){
-        $dbparts = parse_url($url);
+        $dbparts = parse_url($this->url);
         $host     = $dbparts['host'];
         $dbname  = ltrim($dbparts['path'], '/');
         $username = $dbparts['user'];
