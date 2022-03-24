@@ -18,13 +18,6 @@ class Database{
         $this->$password = $dbparts['pass'];
     }
     public function connect(){
-        // $this->conn = null;
-        // $this->url       = getenv('JAWSDB_URL');
-        // $dbparts  = parse_url($this->url);
-        // $host     = $dbparts['host'];
-        // $dbname   = ltrim($dbparts['path'], '/');
-        // $username = $dbparts['user'];
-        // $password = $dbparts['pass'];
         try {
             $this->connection = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->dbname, $this->username, $this->password);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
