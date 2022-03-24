@@ -22,9 +22,15 @@ $data = json_decode(file_get_contents("php://input"));
 // Insert data into object
 $author_obj->id = $data->id;
 
-// Delete author
-if($author_obj->delete()){ /* THIS IS NOT WORKING PROPERLY */
-    echo json_encode(array('message' => 'Author deleted'));
-} else {
-    echo json_encode(array('message' => 'Author not Deleted'));
+// testing for missing parameters
+if (isset($author_obj->id)){
+
+    // Delete author
+    if($author_obj->delete()){ /* THIS IS NOT WORKING PROPERLY */
+        echo json_encode(array('message' => 'Author deleted'));
+    } else {
+        echo json_encode(array('message' => 'Author not Deleted'));
+    }
+}else {
+    echo json_encode( array('message' => 'Missing Required Parameters'));
 }

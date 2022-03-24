@@ -23,11 +23,18 @@ $quote_obj->quote = $data->quote;
 $quote_obj->authorId = $data->authorId;
 $quote_obj->categoryId = $data->categoryId;
 
-// Create new quote
-if($quote_obj->create()){
-    echo json_encode(array('message' => 'Quote Created'));
-} else {
-    echo json_encode(array('message' => 'Quote not Created')
-    );
+// testing for missing parameters
+if (isset($quote_obj->quote) && isset($quote_obj->authorId) && isset($quote_obj->categoryId)){
+
+    // Create new quote
+    if($quote_obj->create()){
+        echo json_encode(array('message' => 'Quote Created'));
+    } else {
+        echo json_encode(array('message' => 'Quote not Created')
+        );
+    }
+}else {
+    echo json_encode( array('message' => 'Missing Required Parameters'));
 }
+
 /* (>>>>>>> 2nd video: ends min 22'10" next test on Postman <<<<<<)*/

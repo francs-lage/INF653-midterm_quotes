@@ -22,9 +22,15 @@ $data = json_decode(file_get_contents("php://input"));
 $author_obj->id = $data->id;
 $author_obj->author = $data->author;
 
-// Update author
-if($author_obj->update()){
-    echo json_encode(array('message' => 'Author updated'));
-} else {
-    echo json_encode(array('message' => 'Author not updated'));
+// testing for missing parameters
+if (isset($author_obj->author) && isset($author_obj->id)){
+
+    // Update author
+    if($author_obj->update()){
+        echo json_encode(array('message' => 'Author updated'));
+    } else {
+        echo json_encode(array('message' => 'Author not updated'));
+    }
+}else {
+    echo json_encode( array('message' => 'Missing Required Parameters'));
 }

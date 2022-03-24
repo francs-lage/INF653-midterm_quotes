@@ -20,9 +20,15 @@ $data = json_decode(file_get_contents("php://input"));
 
 $category_obj->category = $data->category;
 
-// Create category
-if($category_obj->create()){
-    echo json_encode( array('message' => 'Category created'));
-} else {
-    echo json_encode( array('message' => 'Category not created'));
+// testing for missing parameters
+if (isset($category_obj->category)){
+
+    // Create category
+    if($category_obj->create()){
+        echo json_encode( array('message' => 'Category created'));
+    } else {
+        echo json_encode( array('message' => 'Category not created'));
+    }
+}else {
+    echo json_encode( array('message' => 'Missing Required Parameters'));
 }

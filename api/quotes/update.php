@@ -24,10 +24,18 @@ $quote_obj->quote = $data->quote;
 $quote_obj->authorId = $data->authorId;
 $quote_obj->categoryId = $data->categoryId;
 
-// Update quote
-if($quote_obj->update()){
-    echo json_encode(array('message' => 'Quote Updated'));
-} else {
-    echo json_encode(array('message' => 'Quote not Updated'));
+// testing for missing parameters
+if (isset($quote_obj->id) && isset($quote_obj->quote) && isset($quote_obj->authorId) && isset($quote_obj->categoryId)){
+
+
+    // Update quote
+    if($quote_obj->update()){
+        echo json_encode(array('message' => 'Quote Updated'));
+    } else {
+        echo json_encode(array('message' => 'Quote not Updated'));
+    }
+}else {
+    echo json_encode( array('message' => 'Missing Required Parameters'));
 }
+
 /* (>>>>>>> 3nd video: ends min 3'40" next test on Postman and delete function <<<<<<)*/

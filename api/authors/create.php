@@ -21,9 +21,15 @@ $data = json_decode(file_get_contents("php://input"));
 // Insert data into object
 $author_obj->author = $data->author;
 
-// Create new author entry
-if($author_obj->create()){
-    echo json_encode( array('message' => 'Author created'));
-} else {
-    echo json_encode( array('message' => 'Author not created'));
+// testing for missing parameters
+if (isset($author_obj->author)){
+
+    // Create new author entry
+    if($author_obj->create()){
+        echo json_encode( array('message' => 'Author created'));
+    } else {
+        echo json_encode( array('message' => 'Author not created'));
+    }
+}else {
+    echo json_encode( array('message' => 'Missing Required Parameters'));
 }

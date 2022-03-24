@@ -21,10 +21,16 @@ $data = json_decode(file_get_contents("php://input"));
 // Set Id to update
 $quote_obj->id = $data->id;
 
-// Delete quote
-if($quote_obj->delete()){
-    echo json_encode( array('message' => 'Quote deleted'));
-} else {
-    echo json_encode( array('message' => 'Quote not Deleted'));
+// testing for missing parameters
+if (isset($quote_obj->id)){
+
+    // Delete quote
+    if($quote_obj->delete()){
+        echo json_encode( array('message' => 'Quote deleted'));
+    } else {
+        echo json_encode( array('message' => 'Quote not Deleted'));
+    }
+}else {
+    echo json_encode( array('message' => 'Missing Required Parameters'));
 }
 /* (>>>>>>> 3nd video: ends 8'00" next test on Postman and starts with category <<<<<<)*/

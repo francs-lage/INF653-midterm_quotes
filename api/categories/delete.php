@@ -21,9 +21,15 @@ $data = json_decode(file_get_contents("php://input"));
 // Set Id to delete
 $category_obj->id = $data->id;
 
-// Delete category
-if($category_obj->delete()){
-    echo json_encode( array('message' => 'Category deleted'));
-} else {
-    echo json_encode( array('message' => 'Category not deleted'));
+// testing for missing parameters
+if (isset($category_obj->id)){
+
+    // Delete category
+    if($category_obj->delete()){
+        echo json_encode( array('message' => 'Category deleted'));
+    } else {
+        echo json_encode( array('message' => 'Category not deleted'));
+    }
+}else {
+    echo json_encode( array('message' => 'Missing Required Parameters'));
 }

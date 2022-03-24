@@ -22,13 +22,19 @@ $data = json_decode(file_get_contents("php://input"));
 $category_obj->id = $data->id;
 $category_obj->category = $data->category;
 
-// Update category
-if($category_obj->update()){
-    echo json_encode(
-        array('message' => 'Category updated')
-    );
-} else {
-    echo json_encode(
-        array('message' => 'Category not updated')
-    );
+// testing for missing parameters
+if (isset($category_obj->id) && isset($category_obj->category)){
+
+    // Update category
+    if($category_obj->update()){
+        echo json_encode(
+            array('message' => 'Category updated')
+        );
+    } else {
+        echo json_encode(
+            array('message' => 'Category not updated')
+        );
+    }
+}else {
+    echo json_encode( array('message' => 'Missing Required Parameters'));
 }
